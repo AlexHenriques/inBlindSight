@@ -89,34 +89,11 @@ labels_list = [
 
 # Brief Description of the Program and its Functions to the User
 print("---------------------------------------------------------")
-print("Blinding refers to concealing group allocation from the experimenter")
-print("to reduce biases arising from participants' expectations.")
-print("---------------------------------------------------------")
-print("This program can randomly assigns unique IDs to labels.")
-print(f"By default, the code includes {len(labels_list)} Pokémon names, but you may add your own labels.")
-print("You can then use this ID-label pairs to rename your IDs in other files, e.g., data base.")
-print("Files can then be renamed based on the ID-label pairs, the user can import their own.")
-print("It is also possible unblind the files, to re-rename files to match their original ID.")
-print("At no point are the ID-label pairs revealed to the user without their consent.")
-print("---------------------------------------------------------")
-print("Important Notes:")
-print("The code works on both Windows and macOS.")
-print("-----> Any inputted list must have the following format: item1,item2,...itemn")
-print("NO Spaces nor duplicates")
-print("-----> File names must be completely identical to the ID or label!")
-print("(ID1 text) or (id1) will NOT be recognized as (ID1).")
-print("If your file names include something else other than the ID or label, it will be deleted.")
-print("If you generate a file, its name must not contain the name of an ID")
-print("---------------------------------------------------------")
-print("Personal Suggestions:")
-print("Every experimental unit/observation should be blinded, not the groups.")
-print("Ideally, repeat blinding for each analysis to avoid associations between variables based on prior knowledge.")
-print("Technically, you can assign any term to a label. It may help to triple blind, to rename groups names.")
 
 i_mode = input("What would you like to do?\n"
                "(1) Randomly assign your IDs to labels\n"
                "(2) Rename files using already randomly ID-label pairs\n"
-               "(3) Re-rename files using ID-label pairs\n"
+               "(3) Unblind file names using ID-label pairs\n"
                "(1/2/3): ")
 
 # Insert user ID-label pairs
@@ -149,7 +126,7 @@ if i_mode in ["2", "3"]:
             print(f"{ID},{label}")
         print(f"All ID-label pairs were printed.")
 
-# Re-rename the Files using the ID-label pairs:
+# Unblind File Names using the ID-label pairs:
 if i_mode == "3":
     i_re_rename_folder_path = input("What's the path to the folder?:\n")
     id_label_pairs_inverted = {value: key for key, value in id_label_pairs.items()}
