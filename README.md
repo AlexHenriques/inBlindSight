@@ -20,13 +20,15 @@ To get started, follow the installation and usage instructions below.
 
 ### Prerequisites
 
-- Python 3.6 or higher is required to run this tool.
+- Install Python 3.6 or higher.
+- Install Git
 
 ### Installation
 
-1. Clone this repository to your local machine.
-2. Open a terminal and navigate to the repository's directory.
-3. Run the script using the command `python blinding_tool.py`.
+In a terminal:
+1. Clone this repository to your local machine `git clone https://github.com/AlexHenriques/IDBlindingTool.git`
+3. Open a terminal and navigate to the repository's directory `cd IDBlindingTool`.
+5. Run the script using the command `python blinding_tool.py`.
 
 ## Usage
 
