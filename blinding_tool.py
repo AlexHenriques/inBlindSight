@@ -2,6 +2,7 @@ import random
 import os
 import platform
 
+# Lists and Dictionaries for further use
 user_pairs = {}
 id_label_pairs = {}
 ids_list = []
