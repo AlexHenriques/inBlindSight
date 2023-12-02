@@ -1,69 +1,50 @@
-# Blinding Tool for Experimental Research
+# ID Blinding Tool
 
 ![GitHub](https://img.shields.io/github/license/alexhenriques/IDBlindingTool)
-![Python](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8%20%7C%203.9-blue)
 
-### Blinding refers to concealing group allocation from the experimenter to reduce biases arising from participants' expectations, ensuring the reproducibility of your research findings.
-
-This tool provides a user-friendly solution to assist researchers in conducting blinded experiments by randomly assigning unique IDs to labels.
-
-To get started, follow the installation and usage instructions below.
+The ID Blinding Tool is a citable and user-friendly sofware designed to support blinded data analysis. 
+Its primary function involves the random assignment of unique identifiers (IDs) to corresponding labels and renames files accordingly. 
+This process is crucial to prevent bias, ensure anonymity, and maintain data integrity in various experimental settings.
 
 ## Features
 
-- Randomly assign unique IDs to labels for blinded experiments.
-- Rename files using randomly generated ID-label pairs.
-- Ublind file names using previously generated ID-label pairs.
-- Export ID-label pairs to a CSV file for record-keeping.
+- **Random ID-Label Assignment**: Assigns unique IDs to labels and exports the ID-label pairs to an Excel file.
+- **Data Blinding and Unblinding**: Facilitates blinding and unblinding of data by renaming cells in Excel files or 
+renaming files in folders using the generated ID-label pairs.
 
-## Getting Started
+## How to Install and Run the Program
 
-### Prerequisites
+To begin using the ID Blinding Tool, follow these steps:
 
-- Install Python 3.6 or higher.
-- Install Git
+1. **Download**: Click on the green "Code" button and download the ZIP file.
+2. **Installation**: Execute IDBlindify.exe to initiate the tool.
+3. **Function Selection**: Select the desired function, such as Randomly Assign IDs to Labels or Rename Files.
+4. **Guidance**: For assistance, refer to the provided help section within the tool.
 
-### Installation
+Supports both **Windows** and **macOS**
 
-In a terminal:
-1. Clone this repository to your local machine `git clone https://github.com/AlexHenriques/IDBlindingTool.git`
-3. Open a terminal and navigate to the repository's directory `cd IDBlindingTool`.
-5. Run the script using the command `python blinding_tool.py`.
+### How does it randomly assign IDs to Labels?
 
-## Usage
+The ID Blinding Tool pairs identifiers with labels through the following steps:
 
-1. Choose the mode:
-   - (1) Assign IDs to labels at random and optionally rename corresponding files.
-   - (2) Rename files using existing ID-label pairs.
-   - (3) Unblind the files using the ID-label pairs.
+1. **Eliminating Duplicates**: Ensures that the lists of IDs and labels do not contain duplicates.
+2. **Random Label Selection**: Randomly selects the required number of labels from a list of available labels.
+3. **Pairing IDs and Labels**: Establishes random connections between IDs and labels, creating a key for subsequent use.
 
-2. Follow the prompts to input labels, IDs, and paths as needed.
-3. ID-label pairs can be displayed or exported to a CSV file.
+```python
+random_label_selection = random.sample(labels_list, len(ids_list))
+id_label_pairs = dict(zip(ids_list, random_label_selection))
+```
 
-## Important Notes!
+## Contributions and Troubleshooting
 
-- List must have the following format: **item1,item2,...itemn**
-- Ensure that your file names **precisely match** the IDs or labels (including case and spaces).
-- If creating a file, ensure the name doesn't conflict with an ID.
-- The tool supports both Windows and macOS operating systems.
-- At no point are the ID-label pairs revealed to the user **without** their consent.
+If you have ideas to enhance the tool's functionality or encounter any issues, please report it via the Issues section.
 
-## Suggestions
+## Author and Contact
 
-- Every experimental unit/observation should be blinded, not the groups.
-- Ideally, repeat blinding for each analysis to avoid associations between variables based on prior knowledge.
-- Technically, you can assign any term to a label. You may rename groups names for a triple-blind approach.
-
-## Credits
-
-- The idea of using Pokémon names for labeling was inspired by Nuno Henrique Franco, who suggested this creative approach
-
-## Author
-
-- Alexandre Henriques
+- Author: Alexandre Henriques
 - Contact: alexandresshenriques@gmail.com
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
