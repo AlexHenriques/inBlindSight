@@ -323,7 +323,6 @@ def load_id_label_pairs():
         elif ids_label_pairs_filename.endswith('.xlsx'):
             wb = openpyxl.load_workbook(ids_label_pairs_filename)
             ws = wb[wb.sheetnames[0]]
-            # for row in ws.iter_rows(min_row=1 if file_with_header.get() == 0 else 0, values_only=True):
             for i, row in enumerate(ws.iter_rows(min_row=1 if file_with_header.get() == 0 else 0, values_only=True)):
                 if file_with_header.get() == 0 and i == 0:
                     header1, header2 = row[0], row[1]

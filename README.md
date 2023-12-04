@@ -16,12 +16,24 @@ renaming files in folders using the generated ID-label pairs.
 
 To begin using the ID Blinding Tool, follow these steps:
 
-1. **Download**: Click on the green "Code" button and download the ZIP file.
-2. **Installation**: Execute IDBlindify.exe to initiate the tool.
-3. **Function Selection**: Select the desired function, such as Randomly Assign IDs to Labels or Rename Files.
-4. **Guidance**: For assistance, refer to the provided help section within the tool.
+**Windows**
 
-Supports both **Windows** and **macOS**
+1. **Download**: Get the latest .exe file [here](https://github.com/AlexHenriques/IDBlindingTool/releases).
+2. **Installation**: Simply, run the downloaded file (ID_Blinding_Tool.exe) and follow the installation steps.
+3. **Function Selection**: Select the desired function, such as Randomly Assign IDs to Labels or Rename Files.
+4. **Guidance**: Find help within the tool if needed~.
+
+**macOS**
+
+1. **Download**: Click on the green "Code" button and download the ZIP file.
+2. **Installation**: 
+   1. Install [Python](https://www.python.org/downloads/macos/) 3.6 or higher.
+   2. In a terminal, go to the extracted directory using `cd "/path/to/the/directory"`
+   3. Then, execute `pip install -r requirements.txt`
+3. **Run**: Execute `python ID_Blinding_Tool.py`
+4. **Function Selection**: Select the desired function, such as Randomly Assign IDs to Labels or Rename Files.
+5. **Guidance**: Find help within the tool if needed.
+
 
 ### How does it randomly assign IDs to Labels?
 
