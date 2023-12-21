@@ -1,8 +1,9 @@
 # ID Blinding Tool
 
+[![DOI](https://zenodo.org/badge/679767598.svg)](https://zenodo.org/doi/10.5281/zenodo.10257108)
 ![GitHub](https://img.shields.io/github/license/alexhenriques/IDBlindingTool)
 
-The ID Blinding Tool is a citable and user-friendly sofware designed to support blinded data analysis. 
+The ID Blinding Tool is a user-friendly and citable sofware designed to support blinded data analysis. 
 Its primary function involves the random assignment of unique identifiers (IDs) to corresponding labels and renames files accordingly. 
 This process is crucial to prevent bias, ensure anonymity, and maintain data integrity in various experimental settings.
 
