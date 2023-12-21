@@ -10,8 +10,18 @@ import csv
 import openpyxl
 import xlrd
 import os
+import sys
 
+# Directories
 home_directory = os.path.expanduser('~')
+script_directory = os.path.dirname(sys.argv[0])
+logo_icon_path = os.path.join(script_directory, 'logo.ico').replace('\\', '\\\\')
+logo_img_path = os.path.join(script_directory, 'Images', 'logo.png').replace('\\', '\\\\')
+import_formats_img_path = os.path.join(script_directory, 'Images', 'import.png').replace('\\', '\\\\')
+key_img_path = os.path.join(script_directory, 'Images', 'key_format.png').replace('\\', '\\\\')
+db_img_path = os.path.join(script_directory, 'Images', 'rename_db.png').replace('\\', '\\\\')
+files_img_path = os.path.join(script_directory, 'Images', 'rename_files.png').replace('\\', '\\\\')
+ideal_db_img_path = os.path.join(script_directory, 'Images', 'ideal_db.png').replace('\\', '\\\\')
 
 
 def open_github():
@@ -116,7 +126,7 @@ def validate_inserted_ids():
             ids_list += list(set(i_ids.split(',')) - set(ids_list))  # Add only unique ids
             root.after(10, check_random_condition)
             ttkb.Label(mode1_frame, text=f'Currently, there are {len(ids_list)} IDs').grid(row=5, column=0)
-            messagebox.showinfo('Success', f'{len(ids_list)-len_og_ids_list} IDs were added\n'
+            messagebox.showinfo('Success', f'{len(ids_list) - len_og_ids_list} IDs were added\n'
                                            f'In total, {len(ids_list)} IDs were successefuly inserted')
 
 
@@ -168,7 +178,7 @@ def validate_imported_ids():
             ids_list += list(set(ids_file_content.split(',')) - set(ids_list))
             root.after(100, check_random_condition)
             ttkb.Label(mode1_frame, text=f'Currently, there are {len(ids_list)} IDs').grid(row=5, column=0)
-            messagebox.showinfo('Success', f'{len(ids_list)-len_og_ids_list} IDs were added\n'
+            messagebox.showinfo('Success', f'{len(ids_list) - len_og_ids_list} IDs were added\n'
                                            f'In total, {len(ids_list)} IDs were successefuly imported')
 
 
@@ -192,7 +202,7 @@ def validate_inserted_labels():
         root.after(100, check_random_condition)
         (ttkb.Label(mode1_frame, text=f'Currently, there are {len(user_labels_list)} labels')
          .grid(row=10, column=0, pady=(0, 10)))
-        messagebox.showinfo('Success', f'{len(user_labels_list)-len_og_user_labels_list}labels were added\n'
+        messagebox.showinfo('Success', f'{len(user_labels_list) - len_og_user_labels_list}labels were added\n'
                                        f'In total, {len(user_labels_list)} labels were successfuly imported')
 
 
@@ -245,7 +255,7 @@ def validate_imported_labels():
             root.after(100, check_random_condition)
             (ttkb.Label(mode1_frame, text=f'Currently, there are {len(user_labels_list)} labels')
              .grid(row=10, column=0, pady=(0, 10)))
-            messagebox.showinfo('Success', f'{len(user_labels_list)-len_og_user_labels_list}labels were added\n'
+            messagebox.showinfo('Success', f'{len(user_labels_list) - len_og_user_labels_list}labels were added\n'
                                            f'In total, {len(user_labels_list)} labels were successefuly imported')
 
 
@@ -453,7 +463,7 @@ def load_initial_frame():
     root.geometry(f"{frame_width}x{frame_height}")
 
     # Widget: Logo
-    logo_img = ImageTk.PhotoImage(file='Images/logo.png')
+    logo_img = ImageTk.PhotoImage(file=logo_img_path)
     logo_widget = ttkb.Label(initial_frame, image=logo_img)
     logo_widget.image = logo_img
     logo_widget.grid(row=0, column=0)
@@ -467,18 +477,19 @@ def load_initial_frame():
 
     (ttkb.Button(initial_frame, text='GitHub Repository', style='dark', cursor='hand2', command=lambda: open_github())
      .grid(row=4, column=0, padx=10, pady=(100, 0), sticky='sw'))
-    ttkb.Label(initial_frame, text='v.1.0.0', foreground='#868683').grid(row=4, column=0, padx=10, sticky='se')
+    ttkb.Label(initial_frame, text='v.1.0.1', foreground='#868683').grid(row=4, column=0, padx=10, sticky='se')
 
     if use_default_labels.get() == 0:
         inserted_labels_entry.grid_remove()
         validate_labels_button.grid_remove()
         imported_labels_button.grid_remove()
         format_label.grid_remove()
+        use_default_labels.set(1)
 
 
 def load_info1():
     info1_window = tk.Toplevel(root)
-    info1_window.iconbitmap('Images/logo.ico')
+    info1_window.iconbitmap(logo_icon_path)
     info1_window.title("Help - Assign IDs to Labels")
     info1_window.resizable(False, False)
     info1_frame = Frame(info1_window)
@@ -505,7 +516,7 @@ def load_info1():
 
     info_insert_label = ttkb.Label(info1_frame2, text='Insert IDs and Labels')
     info_insert_separator = ttkb.Separator(info1_frame2, orient='horizontal')
-    info_insert_delimiter = ttkb.Label(info1_frame2, text='Commas (,) as delimiters! Do not use in IDs/Labels.')
+    info_insert_delimiter = ttkb.Label(info1_frame2, text='Commas (,) as delimiters! Do not use in IDs or Labels.')
     info_insert_format1_label = ttkb.Label(info1_frame2, text='Case and Space Sensitive')
     info_insert_format2_label = ttkb.Label(info1_frame2, text='No leading or trailing spaces')
     info_insert_format3_label = ttkb.Label(info1_frame2, text='Requeried Format:')
@@ -524,16 +535,16 @@ def load_info1():
     info_insert_format2_label.grid(row=6, column=0, columnspan=2, padx=10, pady=0, sticky='w')
     info_insert_format3_label.grid(row=7, column=0, columnspan=2, padx=10, pady=(0, 5), sticky='w')
     info_insert_format_one_entry.grid(row=8, column=0, padx=10, pady=5, sticky='nsew')
-    info_insert_format_one_label.grid(row=8, column=1, pady=5,  sticky='w')
+    info_insert_format_one_label.grid(row=8, column=1, pady=5, sticky='w')
     info_insert_format_multiple_entry.grid(row=9, column=0, padx=10, pady=5, sticky='nsew')
     info_insert_format_multiple_label.grid(row=9, column=1, pady=5, sticky='w')
 
     info_import_label = ttkb.Label(info1_frame2, text='Import IDs and Labels')
     info_import_separator = ttkb.Separator(info1_frame2, orient='horizontal')
-    info_import_delimiter = ttkb.Label(info1_frame2, text='Commas (,) as delimiters! Do not use in IDs/Labels.')
+    info_import_delimiter = ttkb.Label(info1_frame2, text='Commas (,) as delimiters! Do not use in IDs or Labels.')
     info_import_label1 = ttkb.Label(info1_frame2, text='IDs can be imported from .xlsx, .xls, .csv, and .txt files')
     info_import_label2 = ttkb.Label(info1_frame2, text='Here is their required format:')
-    import_formats_img = ImageTk.PhotoImage(file='Images/import.png')
+    import_formats_img = ImageTk.PhotoImage(file=import_formats_img_path)
     import_formats_widget = ttkb.Label(info1_frame2, image=import_formats_img)
     import_formats_widget.image = import_formats_img
     import_label = ttkb.Label(info1_frame2, text='Separated by rows or columns\n'
@@ -564,14 +575,17 @@ def load_info1():
 
     info_rename_key_label = ttkb.Label(info1_frame2, text='Rename Files')
     info_rename_separator = ttkb.Separator(info1_frame2, orient='horizontal')
+    info_rename_button_label1 = ttkb.Label(info1_frame2,
+                                           text='Only active once there are enough labels to rename the loaded IDs')
     info_rename_button = ttkb.Button(info1_frame2, text='Rename', style='success')
     info_rename_button_label = ttkb.Label(info1_frame2,
                                           text='Load the Rename page. The loaded IDs and Labels are not lost')
 
     info_rename_key_label.grid(row=18, column=0, columnspan=2, padx=10, pady=5, sticky='w')
     info_rename_separator.grid(row=18, column=0, columnspan=2, padx=10, pady=5, sticky='ew' + 's')
-    info_rename_button.grid(row=19, column=0, padx=10, pady=5, sticky='nsew')
-    info_rename_button_label.grid(row=19, column=1, pady=5, sticky='w')
+    info_rename_button_label1.grid(row=19, column=0, columnspan=2, padx=10, pady=5, sticky='w')
+    info_rename_button.grid(row=20, column=0, padx=10, pady=5, sticky='nsew')
+    info_rename_button_label.grid(row=20, column=1, pady=5, sticky='w')
 
     info_home_label1 = ttkb.Label(info1_frame2, text='Return Home')
     info_home_separator1 = ttkb.Separator(info1_frame2, orient='horizontal')
@@ -579,10 +593,10 @@ def load_info1():
     info_return_button_label1 = ttkb.Label(info1_frame2,
                                            text='Return to the initial page. The loaded IDs and Labels are not lost')
 
-    info_home_label1.grid(row=20, column=0, columnspan=2, padx=10, pady=5, sticky='w')
-    info_home_separator1.grid(row=20, column=0, columnspan=2, padx=10, pady=5, sticky='ew' + 's')
-    info_return_button1.grid(row=21, column=0, padx=10, pady=(5, 10), sticky='nsew')
-    info_return_button_label1.grid(row=21, column=1, pady=(5, 10), sticky='w')
+    info_home_label1.grid(row=21, column=0, columnspan=2, padx=10, pady=5, sticky='w')
+    info_home_separator1.grid(row=21, column=0, columnspan=2, padx=10, pady=5, sticky='ew' + 's')
+    info_return_button1.grid(row=22, column=0, padx=10, pady=(5, 10), sticky='nsew')
+    info_return_button_label1.grid(row=22, column=1, pady=(5, 10), sticky='w')
 
     info1_canvas.create_window((0, 0), window=info1_frame2, anchor='nw')
 
@@ -591,7 +605,7 @@ def load_mode1():
     mode1_frame.tkraise()
 
     # Widget: Logo
-    logo_img = ImageTk.PhotoImage(file='Images/logo.png')
+    logo_img = ImageTk.PhotoImage(file=logo_img_path)
     logo_widget = ttkb.Label(mode1_frame, image=logo_img)
     logo_widget.image = logo_img
     logo_widget.grid(row=0, column=0)
@@ -658,7 +672,7 @@ def load_mode1():
 
 def load_info2():
     info2_window = tk.Toplevel(root)
-    info2_window.iconbitmap('Images/logo.ico')
+    info2_window.iconbitmap(logo_icon_path)
     info2_window.title("Help - Rename Files")
     info2_window.resizable(False, False)
     info2_frame = Frame(info2_window)
@@ -685,7 +699,7 @@ def load_info2():
                                                'The file may have an header,\n'
                                                'the slider should relfect this property of the file')
     info_input_format_label2 = ttkb.Label(info2_frame2, text='This should be the format:')
-    key_img = ImageTk.PhotoImage(file='Images/key_format.png')
+    key_img = ImageTk.PhotoImage(file=key_img_path)
     key_widget = ttkb.Label(info2_frame2, image=key_img)
     key_widget.image = key_img
     info_rename_label = ttkb.Label(info2_frame2,
@@ -709,7 +723,7 @@ def load_info2():
     info_rename_databases_button_label = ttkb.Label(info2_frame2,
                                                     text='Choose an .xlsx file to modify cells '
                                                          'within the designated column and sheet')
-    db_img = ImageTk.PhotoImage(file='Images/rename_db.png')
+    db_img = ImageTk.PhotoImage(file=db_img_path)
     db_widget = ttkb.Label(info2_frame2, image=db_img)
     db_widget.image = db_img
 
@@ -727,7 +741,7 @@ def load_info2():
     info_rename_files_button_label = ttkb.Label(info2_frame2,
                                                 text='Select a folder to rename the files based on the loaded key')
     info_rename_files_label = ttkb.Label(info2_frame2, text='Filenames need to exactly match the key')
-    files_img = ImageTk.PhotoImage(file='Images/rename_files.png')
+    files_img = ImageTk.PhotoImage(file=files_img_path)
     files_widget = ttkb.Label(info2_frame2, image=files_img)
     files_widget.image = files_img
 
@@ -754,7 +768,7 @@ def load_info2():
                                                         '1. Create a Key for the IDs categorical variables\n'
                                                         '2. Use these Keys to rename the specif columns\n'
                                                         'Example:')
-    ideal_db_img = ImageTk.PhotoImage(file='Images/ideal_db.png')
+    ideal_db_img = ImageTk.PhotoImage(file=ideal_db_img_path)
     ideal_db_widget = ttkb.Label(info2_frame2, image=ideal_db_img)
     ideal_db_widget.image = ideal_db_img
 
@@ -770,7 +784,7 @@ def load_mode2():
     mode2_frame.tkraise()
 
     # Widget Logo
-    logo_img = ImageTk.PhotoImage(file='Images/logo.png')
+    logo_img = ImageTk.PhotoImage(file=logo_img_path)
     logo_widget = ttkb.Label(mode2_frame, image=logo_img)
     logo_widget.image = logo_img
     logo_widget.grid(row=0, column=0)
@@ -835,7 +849,7 @@ def load_mode2():
 # tkinter Setup
 root = Tk()
 style = ttkb.Style(theme='lumen')
-root.iconbitmap('Images/logo.ico')
+root.iconbitmap(logo_icon_path)
 root.title('ID Blinding Tool')
 root.resizable(False, False)
 
