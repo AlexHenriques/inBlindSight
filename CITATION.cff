@@ -4,7 +4,7 @@ authors:
 - family-names: "Henriques"
   given-names: "Alexandre"
   orcid: "https://orcid.org/0009-0006-6617-3563"
-title: "ID Blinding Tool"
+title: "inBlindSight"
 version: 1.0.0
 doi: 10.5281/zenodo.10257109
 date-released: 2023-12-04
