@@ -13,8 +13,7 @@ from PIL import Image
 home_directory = os.path.expanduser('~')
 script_directory = os.path.dirname(sys.argv[0])
 
-FILE_NAMES = ['logo.ico', 'logo.png', 'import.png', 'help.png', 'feedback.png', 'patch_notes.png',
-              'JosefinSans-VariableFont_wght.ttf']
+FILE_NAMES = ['logo.ico', 'logo.png', 'import.png', 'help.png', 'feedback.png', 'patch_notes.png']
 file_paths = {}
 for file in FILE_NAMES:
     file_paths[file] = os.path.join(script_directory, 'resources', file).replace('\\', '\\\\')
@@ -115,6 +114,7 @@ class InBlindSight:
         self.root = root
         self.root.title('inBlindSight')
         self.root.iconbitmap(file_paths['logo.ico'])
+        self.root.resizable(False, False)
 
         self.page1 = ctk.CTkFrame(root, fg_color=light, corner_radius=1)
         self.page2 = ctk.CTkFrame(root, fg_color=light, corner_radius=1)
@@ -371,12 +371,12 @@ class InBlindSight:
         self.page3.grid_propagate(False)
 
     @staticmethod
-    def open_github(sublink):
-        if sublink == 'instructions':
-            webbrowser.open('https://github.com/AlexHenriques/inBlindSight?tab=readme-ov-file#How-to-Use')
-        elif sublink == 'feedback':
-            webbrowser.open('https://github.com/AlexHenriques/inBlindSight?tab=readme-ov-file#Bugs-&-Feature-Requests')
-        elif sublink == 'release':
+    def open_github(sub_link):
+        if sub_link == 'instructions':
+            webbrowser.open('https://github.com/AlexHenriques/inBlindSight?tab=readme-ov-file#how-to-use')
+        elif sub_link == 'feedback':
+            webbrowser.open('https://github.com/AlexHenriques/inBlindSight?tab=readme-ov-file#bugs--feature-requests')
+        elif sub_link == 'release':
             webbrowser.open('https://github.com/AlexHenriques/inBlindSight/releases')
 
     def validate_inserted_data(self, data_type, data_format):
@@ -423,11 +423,11 @@ class InBlindSight:
                                               '\nSupported formats: .csv, .xlsx, .xls',
                                       icon='cancel')
                     else:
-                        if sheet == '' or sheet == '0':
+                        if sheet == '0':
                             sheet = 1
                         else:
                             sheet = int(sheet) - 1
-                        if column == '' or column == '0':
+                        if column == '0':
                             column = 1
                         else:
                             column = int(column) - 1
@@ -535,7 +535,7 @@ class InBlindSight:
             if 'Unnamed: 0' in df.columns:
                 del df['Unnamed: 0']
 
-            self.id_label_pairs = dict(zip(df.iloc[:, 0], df.iloc[:, 1]))
+            self.id_label_pairs = dict(zip(map(str, df.iloc[:, 0]), map(str, df.iloc[:, 1])))
 
             non_empty_keys = [key for key in self.id_label_pairs.keys() if str(key).strip() != '']
             non_empty_values = [value for value in self.id_label_pairs.values() if str(value).strip() != '']
@@ -590,11 +590,11 @@ class InBlindSight:
                     header = 0
                 else:
                     header = None
-                if sheet == '' or sheet == '0':
+                if sheet == '0':
                     sheet = 1
                 else:
                     sheet = int(sheet) - 1
-                if column == '' or column == '0':
+                if column == '0':
                     column = 1
                 else:
                     column = int(column) - 1
@@ -605,7 +605,7 @@ class InBlindSight:
                 desired_sheet_name = sheet_names[int(self.sheet_entry.get()) - 1]
                 df = pd.read_excel(dataset_filename, sheet_name=desired_sheet_name, header=header)
                 for index, row in df.iterrows():
-                    cell_value = row[column]
+                    cell_value = row.iloc[column]
                     cell_value_str = str(cell_value)
                     if cell_value_str in pairs:
                         new_value = pairs[cell_value_str]

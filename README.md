@@ -1,4 +1,4 @@
-<div style="text-align: center;">
+<div align="center">
     <img src="images/inBlindSight.png" alt="Image" width="720" height="326">
 </div>
 
@@ -58,8 +58,9 @@ feel free to report them on the project's [issues](https://github.com/AlexHenriq
 4. **Generate key**: Once there are enough labels to pair with the IDs, you can press on the 'Create Key' button.  
    Then, choose a name and a location to save the key file.
 
-[More on the **input** formats of IDs and labels](#input-format-of-ids-and-labels)
-[More on the **file** formats of IDs and labels](#file-format-of-ids-and-labels)
+More on the [**input** formats](#input-format-of-ids-and-labels) of IDs and labels
+
+More on the [**file** formats](#file-format-of-ids-and-labels) of IDs and labels
 
 #### How to rename a dataset or files within a folder
 
@@ -71,7 +72,7 @@ feel free to report them on the project's [issues](https://github.com/AlexHenriq
       number on the text entry field, click on the 'Rename Dataset' button. You can overwrite the original dataset or create a new one.
    2. **Files**: Click on the button **Rename Files** and then select a folder in which the files to rename are.
 
-[More on the format of a key file](#file-format-of-keys)
+More on the [format](#file-format-of-keys) of a key file
 
 #### Suggestion: How to successfully rename a dataset with multiple IDs
 
