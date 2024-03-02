@@ -11,7 +11,7 @@ In research, the expectation of specific results, can unintentionally skew the e
 (e.g., [Saltaji et al., 2018](https://doi.org/10.1186%2Fs12874-018-0491-0), [Macleod et al., 2008](https://doi.org/10.1161/STROKEAHA.108.515957)). 
 Therefore, minimizing detection bias, by blinding data from individuals involved in outcome assessment, enhances the internal validity of the data analysis ([Bespalov et al., 2020](https://doi.org/10.1007/164_2019_279)).
 
-Now, the entire process of data blinding datasets and file names can be facilitated and automated with the help of inBlindSight, a Python script with an easy-to-use graphical user interface.
+Now, the entire process of data blinding datasets and file names can be facilitated and automated with the help of inBlindSight, a locally operated Python script with an easy-to-use graphical user interface.
 
 ## Features
 
@@ -89,8 +89,8 @@ More on the [format](#file-format-of-keys) of a key file
 
 ##### File format of IDs and labels
 
-- Must only contain a list of IDs **or** Labels
-- IDs or Labels can be separated by rows or columns (or commas)
+- Sheet index is based on the chronological order of creation dates.
+- IDs or Labels must be separated by rows
 - First row can be a header
 - File Formats: .csv, .xls, or .xlsx
 
@@ -99,7 +99,7 @@ More on the [format](#file-format-of-keys) of a key file
 
 ##### File format of keys
 
-- On the first sheet, on the first column are the IDs and on the second column are the labels
+- On the **first** sheet, on the **first** column are the IDs and on the **second** column are the labels
 - First row can be a header
 - File Formats: .xlsx, .xls or .csv
 
@@ -152,7 +152,7 @@ Great! Just follow these steps:
 
 - **Current Focus**: The tool only focuses on blinding identifiers, which are variables that uniquely identify each entity within the dataset. 
 - **Limitation**: It does **NOT** remove biases introduced by patterns of variables. For example, in blinded a variable
-  (e.g., country) entities sharing the same value will still share the same label.
+  (e.g., country), entities sharing the same value will still share the same label.
 - **Recommendation**: Consider deleting all the non-relevant information from the working datasets and then blind the IDs.
 - **Planned Future**: In the future, a feature will be added to address scenarios such as the one just mentioned, 
   by creating pairing a categorical value to multiple labels. Additionally, if people are interested, the option to 
