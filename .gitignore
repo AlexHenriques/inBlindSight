@@ -2,8 +2,7 @@
 build/
 dist/
 supplies/
+releases/
 inBlindSight.spec
-inBlindSight_1.0.0_WIN_setup.exe
-inBlindSight_1.1.0_WIN_setup.exe
 setup_script_specs.iss
 setup_anaconda_script.txt
