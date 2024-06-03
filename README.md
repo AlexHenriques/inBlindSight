@@ -1,5 +1,5 @@
-<div align="center">
-    <img src="images/inBlindSight.png" alt="Image" width="720" height="326">
+<div style="text-align: center;">
+    <img src="images/inBlindSight.png" alt="Logo" width="720" height="326">
 </div>
 
 [![DOI](https://zenodo.org/badge/679767598.svg)](https://zenodo.org/doi/10.5281/zenodo.10257108)
@@ -7,13 +7,16 @@
 
 ## Data Blinding Make Effortless and Seamless
 
-In research, the expectation of specific results, can unintentionally skew the experiment by overestimating the effect size 
+In research, the expectation of specific results, can unintentionally skew the experiment by significantly overestimating the effect size 
 (e.g., [Saltaji et al., 2018](https://doi.org/10.1186%2Fs12874-018-0491-0), [Macleod et al., 2008](https://doi.org/10.1161/STROKEAHA.108.515957)). 
 Therefore, minimizing detection bias, by blinding data from individuals involved in outcome assessment, enhances the internal validity of the data analysis ([Bespalov et al., 2020](https://doi.org/10.1007/164_2019_279)).
 
-Now, the entire process of data blinding datasets and file names can be facilitated and automated with the help of inBlindSight, a locally operated Python script with an easy-to-use graphical user interface.
+One of the biggest challenges of masking the data is the hassle and the need to involve another person. Not anymore.
+ Now, you can easily conduct a partially blinded study with the help of inBlindSight, by automating the blinding of result assessment and data analysis.
 
 ## Features
+
+inBlindSight is a locally operated Python script with an easy-to-use graphical user interface that:
 
 - **Random ID-Label Assignment**: Assigns unique IDs to labels and exports the key of ID-label pairs to an Excel file
 - **Data Blinding and Unblinding**: Facilitates blinding and unblinding of data by renaming columns in Excel files or
@@ -32,12 +35,12 @@ Now, the entire process of data blinding datasets and file names can be facilita
 
 1. **Download**: Click on the green "Code" button and download the ZIP file to a directory (folder).
 2. **Installation**:
-   0. Optional: Install [Josefin Sans](https://fonts.google.com/specimen/Josefin+Sans)
+   - Optional: Install [Josefin Sans](https://fonts.google.com/specimen/Josefin+Sans)
    1. Ensure you have [Python](https://www.python.org/downloads/macos/) 3.6 or higher installed on your system, as it is necessary to run the script
    2. Open a terminal (use Command + Space to bring up Spotlight and search 'Terminal') and navigate to the directory 
 where the tool is located by typing `cd "/path/to/the/directory/"` in the terminal and pressing Enter
    3. In the terminal, type `pip install -r requirements.txt` and press Enter to run
-3. **Run**: Execute the tool by typing `python ID_Blinding_Tool.py` on the terminal and pressing Enter to run
+3. **Run**: Execute the tool by typing `python inBlindSight.py` on the terminal and pressing Enter to run
 
 **Note**: This tool has only been tested on Windows. While it should also work on macOS, please note that it has not 
 been extensively tested on macOS. If you encounter any issues or unexpected behavior while running the tool on macOS, 
@@ -53,7 +56,7 @@ feel free to report them on the project's [issues](https://github.com/AlexHenriq
       (e.g., text1,text2,...,textn).
       Click on the 'Insert IDs' button to add the IDs in the text entry field. You can input IDs in batches or in one time.
    2. **Import File**: Click on the 'Import IDs' labels to select an Excel file.
-3. **Load Custom Labels**: By default, there are 509 color names. Custom labels can be inputted like IDs, after the 
+3. **Load Custom Labels**: By default, there are 3 themes of labels (928 animals, 509 colors, 201 countries). Custom labels can be inputted like IDs, after the 
    Labels panel is revealed by clicking on the 'Use Default Labels' switch.
 4. **Generate key**: Once there are enough labels to pair with the IDs, you can press on the 'Create Key' button.  
    Then, choose a name and a location to save the key file.
@@ -65,7 +68,7 @@ More on the [**file** formats](#file-format-of-ids-and-labels) of IDs and labels
 #### How to rename a dataset or files within a folder
 
 1. **Go to the Rename Datasets or Files page**: Click on the 'Rename Datasets or Files' button on the landing page.
-2. **Load Key**: Click on the 'Import Key' button and select the Excel Key file.
+2. **Load Key**: Click on the 'Import Key' button and select the key file.
 3. **(Un)Blind**: Decide whether the IDs will be replaced by labels ('Blind') or vice versa ('Unblind').
 4. **Rename**: From here you have two options:
    1. **Datasets**: After specifying the localization of the IDs within the Excel by typing the **sheet** and **column** 
@@ -79,6 +82,13 @@ More on the [format](#file-format-of-keys) of a key file
 1. Create a key for each ID variable to blind.
 2. Rename all the ID variables one by one using the respective keys.
 
+#### Suggestion: How to truly do a blind data analysis
+
+After masking the identifiers:
+1. Blind group allocation
+2. Statistical analysis: group comparisons
+3. Unblind group allocation by checking the key 
+
 ### Formatting Guidelines
 
 #### Input format of IDs and labels
@@ -89,12 +99,11 @@ More on the [format](#file-format-of-keys) of a key file
 
 ##### File format of IDs and labels
 
-- Sheet index is based on the chronological order of creation dates.
 - IDs or Labels must be separated by rows
 - First row can be a header
 - File Formats: .csv, .xls, or .xlsx
 
-<img src="images/id_label_excel_format.png" alt="Image" width="394" height="450">
+<img src="images/id_label_excel_format.png" alt="Image example of the required format of IDs and labels" width="394" height="450">
 
 
 ##### File format of keys
@@ -103,7 +112,7 @@ More on the [format](#file-format-of-keys) of a key file
 - First row can be a header
 - File Formats: .xlsx, .xls or .csv
 
-<img src="images/key_excel_format.png" alt="Image" width="394" height="450">
+<img src="images/key_excel_format.png" alt="Image example of the required format of keys" width="394" height="450">
 
 #### Code Explanation
 
@@ -111,8 +120,9 @@ inBlindSight guarantees reliable data blinding through the following steps:
 
 1. **Eliminating Duplicates**: Ensures that the lists of IDs and labels do not contain duplicates
 2. **Random Label Selection**: Randomly selects the required number of labels from a list of shuffled labels
-3. **Pairing IDs and Labels**: Establishes random connections between IDs and labels, creating a key for subsequent use
+3. **Pairing IDs and Labels**: Establishes random connections between IDs and labels, creating a key for further use
 4. **New & Shuffled Dataset**: Creates a new dataset by randomly shuffling the rows of the original dataset
+5. **Randomly Sorted Folder**: Rearranges a folder ordered by name, leading to a result assessment in a random order
 
 **Note**: Your data remains secure as all processing is done locally on your computer
 
@@ -151,12 +161,14 @@ Great! Just follow these steps:
 ## Future Directions
 
 - **Current Focus**: The tool only focuses on blinding identifiers, which are variables that uniquely identify each entity within the dataset. 
-- **Limitation**: It does **NOT** remove biases introduced by patterns of variables. For example, in blinded a variable
-  (e.g., country), entities sharing the same value will still share the same label.
+- **Limitation**: For a blinded data analysis not conducted by an independent analyst, random codding of entities and experimental groups
+ is a strategy of **moderate** quality ([Karp et al., 2022](https://doi.org/10.1371/journal.pbio.3001873)), as differences between experimental group remain apparent.
+ For example, in a blinded categorical variable (e.g., country), entities sharing the same value will still share the same label.
+ In such cases, more sophisticated statistical and computational methods are required.
 - **Recommendation**: Consider deleting all the non-relevant information from the working datasets and then blind the IDs.
-- **Planned Future**: In the future, a feature will be added to address scenarios such as the one just mentioned, 
-  by creating pairing a categorical value to multiple labels. Additionally, if people are interested, the option to 
-  password protect the key file will be added. Also, aesthetic improvements will be made.
+- **Planned Future**: To create a one-stop shop, randomization of group allocation with or without blocking will be implemented.
+ Potential features include help buttons that offers contextual hints on hover, compatibility with .sqlite & .db datasets, and implementation of a protected key.
+ These can be added upon request.
 
 ## Citation
 
